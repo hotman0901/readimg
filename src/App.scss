@@ -1,0 +1,32 @@
+* 
+{
+    box-sizing: border-box;
+}
+.App {
+    text-align: center;
+}
+
+.img-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .wrapper
+    {
+        width: 50%;
+
+        border: 1px solid #9e9e9e;
+        padding: 10px;
+
+        h3
+        {
+            @media screen and (max-width: 500px) {
+                font-size: 10px;
+            }
+        }
+
+        img {
+            width: 100%;
+        }
+    }
+}
