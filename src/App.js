@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import dayjs from 'dayjs';
+// import dayjs from 'dayjs';
 
 export default class App extends React.Component {
     constructor(props) {
@@ -32,7 +32,7 @@ export default class App extends React.Component {
         this.getImgs();
         setInterval(() => {
             this.getImgs();
-        }, 60000);
+        }, 30000);
     }
 
     getImgs = () => {
@@ -50,16 +50,42 @@ export default class App extends React.Component {
         this.setState({ imgs });
     };
 
+    getTimes = () => {
+        let date = new Date();
+        let seperator1 = '-';
+        let seperator2 = ':';
+        let month = date.getMonth() + 1;
+        let strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = '0' + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = '0' + strDate;
+        }
+        let currentdate =
+            date.getFullYear() +
+            seperator1 +
+            month +
+            seperator1 +
+            strDate +
+            ' ' +
+            date.getHours() +
+            seperator2 +
+            date.getMinutes() +
+            seperator2 +
+            date.getSeconds();
+        return currentdate;
+    };
+
     renderImgs() {
         const { imgs = [], imgNames } = this.state;
-        if (imgNames.length > 0) {
+        if (imgNames.length > 0 && imgs.length > 0) {
             let img = [];
             img = imgNames.map((url) => {
-                let dateformat = dayjs().format('YYYY MM-DDTHH:mm:ss');
-                console.log('dateformat:', dateformat);
+                
                 return (
                     <div key={url} className="wrapper">
-                        <h3>{`${url}-${dateformat}`}</h3>
+                        <h3>{`${url}-${this.getTimes()}`}</h3>
                         <img src={`/img/${url}?${new Date() / 1}`} alt={url} />
                     </div>
                 );
