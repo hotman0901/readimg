@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import Magnifier from "react-magnifier";
 // import dayjs from 'dayjs';
 
 export default class App extends React.Component {
@@ -86,7 +87,7 @@ export default class App extends React.Component {
                 return (
                     <div key={url} className="wrapper">
                         <h3>{`${url}-${this.getTimes()}`}</h3>
-                        <img src={`/img/${url}?${new Date() / 1}`} alt={url} />
+                        <Magnifier src={`/img/${url}?${new Date() / 1}`} alt={url} />
                     </div>
                 );
             });
